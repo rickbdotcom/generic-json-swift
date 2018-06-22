@@ -78,3 +78,17 @@ extension JSON: CustomDebugStringConvertible {
         }
     }
 }
+
+public extension JSON {
+
+	func value<T>() -> T? {
+		switch self {
+        case let .array(array): return array as? T
+        case let .object(object): return object as? T
+        case let .string(string): return string as? T
+        case let .number(number): return number as? T
+        case let .bool(bool): return bool as? T
+        case .null: return nil
+		}
+	}
+}
